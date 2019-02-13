@@ -24,7 +24,7 @@ class requests_wrap(RequestHandler):
     def template(self, name=None, **kwargs):
         """
             优先以name命名的模板，函数名次之
-            templates/account/login.html
+            templates/account/login.html 对应handler/account/login.py
         """
 
         path = self.get_template_dir() + '/' + self.get_template_name() + '.html'
