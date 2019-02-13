@@ -7,9 +7,9 @@ from data.db import metadb
 from handlers.requests.requests_wrap import requests_wrap
 
 
-class MainHandler(requests_wrap):
+class login(requests_wrap):
     def get(self):
-        self.render("login.html")
+        self.template()
 
     def post(self):
         username = self.get_argument("username", None)

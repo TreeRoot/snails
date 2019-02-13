@@ -5,9 +5,9 @@
 # author: xwt
 
 
-from handlers.account.login import MainHandler
+from handlers.account.login import login
 
 
 url = [
-        (r"/", MainHandler)
+        (r"/", login)
         ]

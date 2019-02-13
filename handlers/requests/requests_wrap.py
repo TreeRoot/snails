@@ -2,6 +2,9 @@
 
 
 import json
+import os
+import inspect
+
 from tornado.web import RequestHandler
 
 
@@ -17,6 +20,27 @@ class requests_wrap(RequestHandler):
         """
         self.set_header("Content-Type", content_type)
         self.write(json.dumps(obj, cls=cls).replace("</", "<\\/"))
+
+    def template(self, name=None, **kwargs):
+        """
+            优先以name命名的模板，函数名次之
+            templates/account/login.html
+        """
+
+        path = self.get_template_dir() + '/' + self.get_template_name() + '.html'
+
+        self.render(path, **kwargs)
+
+    def get_template_name(self):
+        name = self.__class__.__name__.split('.')[0]
+        return name
+
+    def get_template_dir(self):
+        root = os.path.dirname(inspect.getfile(self.__class__)).split('/')[-1]
+        return root
+
+
+
 
 
         
