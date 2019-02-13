@@ -5,15 +5,9 @@
 # author: xwt
 
 
-
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
-
-from handlers.index import IndexHanfler
+from handlers.account.login import MainHandler
 
 
 url = [
-        (r"/", IndexHanfler)
+        (r"/", MainHandler)
         ]

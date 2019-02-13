@@ -1,22 +1,24 @@
 # -*- codnig:utf-8 -*-
 
-
 import tornado.ioloop
-import tornado.web
+import tornado.options 
+import tornado.httpserver
 
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("hello world")
+from application import application
+from tornado.options import define, options
 
+define("port", default=8970, help="run on given port", type=int)
 
-def make_app():
-    return tornado.web.Application([
-            (r"/", MainHandler),
-        ])
+def main():
+    tornado.options.parse_command_line()
+    http_server = tornado.httpserver.HTTPServer(application)
+    http_server.listen(options.port)
+
+    print("Development server is running at http:127.0.0.1:%s" % options.port)
+
+    tornado.ioloop.IOLoop.instance().start()
 
 
 if __name__ == "__main__":
-    app = make_app()
-    app.listen(8888)
-    tornado.ioloop.IOLoop.current().start()
+    main()
