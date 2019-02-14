@@ -10,14 +10,14 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "post",
-			url: "/",
+			url: "/login",
 			data: post_data,
 			cache: false,
 			success: function(data){
 				alert(data);
 			},
 			error: function(data){
-				alert(data);
+				alert("error");
 			}
 
 		})

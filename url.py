@@ -6,8 +6,10 @@
 
 
 from handlers.account.login import login
+from handlers.account.home import home 
 
 
 url = [
-        (r"/", login)
-        ]
+        (r"/login", login),
+        (r"/home", home),
+    ]

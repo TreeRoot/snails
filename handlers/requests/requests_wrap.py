@@ -1,14 +1,40 @@
 # -*- coding:utf-8 -*-
 
 
-import json
 import os
+import json
 import inspect
+import binascii
 
 from tornado.web import RequestHandler
 
 
 class requests_wrap(RequestHandler):
+
+    __token__ = {}
+
+    def new_token(self):
+        while True:
+            new_token = binascii.hexlify(os.urandom(16)).decode("utf8")
+            if new_token not in self.__token__:
+                return new_token
+
+    def on_login_success(self, new_token, user_id):
+        self.set_secure_cookie("_token", new_token)
+        self.__token__.update({new_token:user_id})
+        
+    def get_current_user(self):
+        """
+            get token from cookie
+        """
+
+        token = self.get_secure_cookie("_token")
+        if token and token.decode() in self.__token__:
+            user_id = self.__token__[token.decode()]
+            print(user_id)
+            return user_id
+
+        return None
 
     def json(self, 
             obj, 
@@ -38,10 +64,3 @@ class requests_wrap(RequestHandler):
     def get_template_dir(self):
         root = os.path.dirname(inspect.getfile(self.__class__)).split('/')[-1]
         return root
-
-
-
-
-
-        
-
