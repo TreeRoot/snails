@@ -9,10 +9,7 @@ from handlers.requests.requests_wrap import requests_wrap
 
 class user_login(requests_wrap):
     def get(self):
-        if self.check_auth():
-            self.redirect('/home')
-        else:
-            self.template()
+        self.template()
 
     def post(self):
 
@@ -26,6 +23,9 @@ class user_login(requests_wrap):
         # set cookie
         token = self.new_token()
         self.on_login_success(token, user_id)
+
+        msg = { "code" : 0, "status": 0, "msg": "login success", "data": []}
+        self.json(msg)
 
 
 class user_register(requests_wrap):

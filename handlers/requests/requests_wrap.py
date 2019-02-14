@@ -31,7 +31,6 @@ class requests_wrap(RequestHandler):
         token = self.get_secure_cookie("_token")
         if token and token.decode() in self.__token__:
             user_id = self.__token__[token.decode()]
-            print(user_id)
             return user_id
 
         return None
