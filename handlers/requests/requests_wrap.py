@@ -36,6 +36,11 @@ class requests_wrap(RequestHandler):
 
         return None
 
+    def check_auth(self):
+        token = self.get_secure_cookie("_token")
+        if token:
+            return token.decode() in self.__token__
+
     def json(self, 
             obj, 
             content_type="text/javascript; charset=utf-8",

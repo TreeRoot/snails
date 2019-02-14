@@ -7,7 +7,7 @@ from data.db import metadb
 from handlers.requests.requests_wrap import requests_wrap
 
 
-class login(requests_wrap):
+class user_login(requests_wrap):
     def get(self):
         if self.check_auth():
             self.redirect('/home')
@@ -27,12 +27,20 @@ class login(requests_wrap):
         token = self.new_token()
         self.on_login_success(token, user_id)
 
-    def check_auth(self):
-        token = self.get_secure_cookie("_token")
-        if token:
-            return token.decode() in self.__token__
 
-    
+class user_register(requests_wrap):
+    def get(self):
+        self.template()
 
+    def post(self):
+        username = self.get_argument("username", None)
+        password = self.get_argument("password", None)
+        passwordr = self.get_argument("passwordr", None)
 
+        if password == passwordr and username and password:
+            msg = {"code":0, "status":0, "msg":"register success", "data": []}
+            self.json(msg)
 
+        else:
+            msg = {"code":1, "status":1, "msg":"register fail", "data": []}
+            self.json(msg)
