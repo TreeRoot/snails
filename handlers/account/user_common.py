@@ -26,6 +26,8 @@ class user_login(requests_wrap):
         # set cookie
         token = self.new_token()
         self.on_login_success(token, user_id)
+        msg = { "code" : 0, "status": 0, "msg": "login success", "data": []}
+        self.json(msg)
 
 
 class user_register(requests_wrap):
