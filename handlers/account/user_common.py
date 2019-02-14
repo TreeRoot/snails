@@ -19,7 +19,7 @@ class user_login(requests_wrap):
         if not password or not username:
             msg = { "code" : 1, "status": 1, "msg": "no password or username", "data": []}
             self.json(msg)
-        
+
         # set cookie
         token = self.new_token()
         self.on_login_success(token, user_id)

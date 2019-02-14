@@ -6,7 +6,7 @@
 
 
 from handlers.account.user_common import user_login, user_register
-from handlers.account.home import home 
+from handlers.account.home import home
 
 
 url = [
