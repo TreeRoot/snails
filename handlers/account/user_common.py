@@ -3,7 +3,7 @@
 
 import hashlib
 
-from data.db import metadb
+from db_manage.db import metadb
 from handlers.requests.requests_wrap import requests_wrap
 
 
@@ -26,7 +26,6 @@ class user_login(requests_wrap):
 
         msg = { "code" : 0, "status": 0, "msg": "login success", "data": []}
         self.json(msg)
-
 
 class user_register(requests_wrap):
     def get(self):

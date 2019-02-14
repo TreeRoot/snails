@@ -22,7 +22,7 @@ class requests_wrap(RequestHandler):
     def on_login_success(self, new_token, user_id):
         self.set_secure_cookie("_token", new_token)
         self.__token__.update({new_token:user_id})
-        
+
     def get_current_user(self):
         """
             get token from cookie

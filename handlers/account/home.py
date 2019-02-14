@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 
 
-from tornado.web import RequestHandler, authenticated
+import tornado
+from handlers.requests.requests_wrap import requests_wrap
 
 
-class home(RequestHandler):
-    @authenticated
+class home(requests_wrap):
+    @tornado.web.authenticated
     def get(self):
         self.template()
 
