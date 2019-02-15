@@ -41,6 +41,7 @@ var _set = {
     store: '#ehong-code-input',
     codeval: '#ehong-code'
 }
+
 $.idcode = {
     getCode: function(option) {
         _commSetting(option);
@@ -176,7 +177,6 @@ function fail(Obj, counter, msg) {
 // 用户名匹配
 $('.container').find('input').eq(0).change(function() {
 
-
     if (regUsername.test($(this).val())) {
         success($(this), 0);
     } else if ($(this).val().length < 5) {
@@ -206,7 +206,6 @@ $('.container').find('input').eq(1).change(function() {
     if ($(this).val().length < 8) {
         fail($(this), 1, '密码太短，不能少于8个字符');
     } else {
-
 
         if (atLeastTwo($(this).val()) < 2) {
             fail($(this), 1, '密码中至少包含字母、数字、特殊字符的两种')
