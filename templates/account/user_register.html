@@ -2,17 +2,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Learning Python</title>
+    <title>snails</title>
 	<script src="{{static_url("js/3th/jquery-3.3.1.min.js")}}"></script>
 	<script src="{{static_url("js/account/user_common.js")}}"></script>
-</head>
+	<link href="{{static_url("css/account/user_register.css")}}" rel="stylesheet" type="text/css"/>	
 
+	<link rel="stylesheet" href="{{static_url("3thd/bootstrap-3.3.7-dist/css/bootstrap.min.css")}}">
+	<script src="{{static_url("3thd/bootstrap-3.3.7-dist/js/bootstrap.min.js")}}"></script>
+
+</head    
 <body>
-    <h2>Register User</h2>
-    <form method="POST">
-        <p><span>UserName:</span><input type="text" id="username"/></p>
-        <p><span>Password:</span><input type="password" id="password" /></p>
-        <p><span>Password:</span><input type="password" id="passwordr" /></p>
-        <p><input type="BUTTON" value="register" id="register" /></p>
-    </form>
+	
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3">
+
+		<form action="" class="">
+            <div class="form-group has-feedback">
+                <label for="username">用户名</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input id="username" class="form-control" placeholder="请输入用户名" maxlength="20" type="text">
+                </div>
+
+                <span style="color:red;display: none;" class="tips"></span>
+                <span style="display: none;" class=" glyphicon glyphicon-remove form-control-feedback"></span>
+                <span style="display: none;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="password">密码</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input id="password" class="form-control" placeholder="请输入密码" maxlength="20" type="password">
+                </div>
+
+                <span style="color:red;display: none;" class="tips"></span>
+                <span style="display: none;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span style="display: none;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="password_confirm">确认密码</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input id="password_confirm" class="form-control" placeholder="请再次输入密码" maxlength="20" type="password">
+                </div>
+                <span style="color:red;display: none;" class="tips"></span>
+                <span style="display: none;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span style="display: none;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="form-group has-feedback">
+                        <label for="code-btn">验证码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
+                            <input id="code-btn" class="form-control" placeholder="请输入验证码" maxlength="4" type="text">
+                        </div>
+                        <span style="color:red;display: none;" class="tips"></span>
+                        <span style="display: none;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span style="display: none;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-xs-5" style="padding-top: 30px">
+                    <div id="idcode" style="background: transparent;"></div>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="phoneNum">手机号码</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                    <input id="phoneNum" class="form-control" placeholder="请输入手机号码" maxlength="11" type="text">
+                </div>
+                <span style="color:red;display: none;" class="tips"></span>
+                <span style="display: none;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span style="display: none;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="form-group has-feedback">
+                        <label for="idcode-btn">校验码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
+                            <input id="idcode-btn" class="form-control" placeholder="请输入校验码" maxlength="6" type="text">
+                        </div>
+                        <span style="color:red;display: none;" class="tips"></span>
+                        <span style="display: none;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <span style="display: none;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-xs-5 text-center" style="padding-top: 26px">
+                    <button type="button" id="loadingButton" class="btn btn-primary" autocomplete="off">获取短信校验码</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control btn btn-primary" id="submit" value="立&nbsp;&nbsp;即&nbsp;&nbsp;注&nbsp;&nbsp;册" type="submit">
+            </div>
+
+            <div class="form-group">
+                <input value="重置" id="reset" class="form-control btn btn-danger" type="reset">
+            </div>
+        </form>	
+		</div>
+	</div>
+
 </body>
