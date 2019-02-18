@@ -33,7 +33,7 @@ var settings = {
         len: 4
     }, //len是修改验证码长度的
     codeTip: '换个验证码?',
-    inputID: 'idcode-btn' //验证元素的ID
+    inputID: 'code-btn' //验证元素的ID
 };
 
 var _set = {
@@ -69,6 +69,21 @@ $.idcode = {
         }
     }
 };
+
+function send_data(url, data) {
+	$.ajax({
+		type:'post',
+		url: '/register',
+		data: data,
+		cache: false,
+		success(result){
+			alert(result);
+		},
+		error(result){
+			alert(result);
+		}
+	})
+}
 
 function _commSetting(option) {
     $.extend(settings, option);
@@ -252,19 +267,19 @@ $('.container').find('input').eq(4).change(function() {
 });
 
 //短信验证码
-var regMsg = /111111/;
-$('.container').find('input').eq(5).change(function() {
-    if (check[4]) {
-        if (regMsg.test($(this).val())) {
-            success($(this), 5);
-        } else {
-            fail($(this), 5, '短信验证码错误');
-        }
-    } else {
-        $('.container').find('input').eq(4).parent().parent().removeClass('has-success').addClass('has-error');
-    }
-
-});
+// var regMsg = /111111/;
+// $('.container').find('input').eq(5).change(function() {
+//     if (check[4]) {
+//         if (regMsg.test($(this).val())) {
+//             success($(this), 5);
+//         } else {
+//             fail($(this), 5, '短信验证码错误');
+//         }
+//     } else {
+//         $('.container').find('input').eq(4).parent().parent().removeClass('has-success').addClass('has-error');
+//     }
+// 
+// });
 
 
 $('#loadingButton').click(function() {
@@ -303,11 +318,21 @@ $('#submit').click(function(e) {
             return value == true
         })) {
         e.preventDefault();
-        for (key in check) {
-            if (!check[key]) {
-                $('.container').find('input').eq(key).parent().parent().removeClass('has-success').addClass('has-error')
-            }
-        }
+        // for (key in check) {
+        //     if (!check[key]) {
+        //         $('.container').find('input').eq(key).parent().parent().removeClass('has-success').addClass('has-error')
+        //     }
+        // }
+		var data = {}
+		data = {
+			"username": $('#username').val(),
+			"password": $('#password').val(),
+			"password_confirm": $('#password_confirm').val(),
+			"code": $('#code-btn').val(),
+			"phone_num": $('#phone_num').val(),
+		}
+		send_data('/register', data)
+		
     }
 });
 

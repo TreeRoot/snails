@@ -14,13 +14,12 @@ $(document).ready(function() {
 			data: post_data,
 			cache: false,
 			success: function(data){
-				// alert(data);
-				if (data.code == 0) {
-					window.location.href = '/home'			
-				}
+				alert('success');
+				window.location.href='/home';
+				
 			},
 			error: function(data){
-				alert("error");
+				alert(data);
 			}
 
 		})

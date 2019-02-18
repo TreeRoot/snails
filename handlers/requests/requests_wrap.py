@@ -8,6 +8,8 @@ import binascii
 
 from tornado.web import RequestHandler
 
+from handlers.utils.common import point_dict
+
 
 class requests_wrap(RequestHandler):
 
@@ -68,3 +70,20 @@ class requests_wrap(RequestHandler):
     def get_template_dir(self):
         root = os.path.dirname(inspect.getfile(self.__class__)).split('/')[-1]
         return root
+
+    def get_args(self, *args):
+        obj = point_dict()
+        for arg in args:
+            obj[arg] = self.get_argument(arg, None)
+
+        return obj
+
+    def msg(self, **kwargs):
+        msg = {
+                "code": kwargs.get('code', 0),
+                "status": kwargs.get('status', 0),
+                "msg": kwargs.get('msg', None),
+                "data": kwargs.get('data', None),
+            }
+
+        self.json(msg)
